@@ -127,11 +127,11 @@ github_release: update_docs
 pypi_release: # Has an implicit dependency on github_release because...
 	# Upload to PyPI, automatically picking tag created by github_release
 	cd release && python3 -m venv venv
-	cd release && venv/bin/pip3 install --upgrade setuptools pip
-	cd release && venv/bin/pip3 install twine wheel
-	cd release && venv/bin/python3 setup.py sdist bdist_wheel
+	cd release && venv/bin/pip3 install --upgrade pip
+	cd release && venv/bin/pip3 install flit
+	cd release && venv/bin/flit build
 	# Note: hope you remember password for pypi, but username is 'newren'
-	cd release && venv/bin/twine upload dist/*
+	cd release && venv/bin/flit publish
 	# Remove temporary file(s)
 	cd release && rm -f README.md git-filter-repo git_filter_repo.py
 	cd release && rm -rf .eggs/ build/ venv/ git_filter_repo.egg-info/

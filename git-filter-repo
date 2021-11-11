@@ -30,6 +30,8 @@ operations; however:
   ***** END API BACKWARD COMPATIBILITY CAVEAT *****
 """
 
+__version__ = "2.34.0"
+
 import argparse
 import collections
 import fnmatch
