@@ -3990,15 +3990,3 @@ class RepoFilter(object):
     # Let user know how long it took
     print(_("Completely finished after {:.2f} seconds.")
           .format(time.time()-start))
-
-def main():
-  setup_gettext()
-  args = FilteringOptions.parse_args(sys.argv[1:])
-  if args.analyze:
-    RepoAnalyze.run(args)
-  else:
-    filter = RepoFilter(args)
-    filter.run()
-
-if __name__ == '__main__':
-  main()
