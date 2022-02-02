@@ -25,7 +25,7 @@ jobs:
 
         export PATH=$PWD:$PATH
 
-        if ! t/run_tests -q -v
+        if ! t/run_tests -q
         then
           mkdir failed &&
           tar czf failed/failed.tar.gz t
