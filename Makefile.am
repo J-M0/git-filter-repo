@@ -5,7 +5,7 @@ TESTS = t/run_tests
 
 dist_bin_SCRIPTS = git-filter-repo
 dist_man1_MANS = Documentation/man1/git-filter-repo.1
-html_DATA = Documentation/html/git-filter-repo.html
+dist_html_DATA = Documentation/html/git-filter-repo.html
 
 .PHONY: coverage
 coverage:
