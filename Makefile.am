@@ -1,5 +1,4 @@
-docdir = $(datarootdir)/doc/git
-htmldir = $(docdir)/html
+htmldir = $(datarootdir)/doc/git/html
 
 TESTS = t/run_tests
 
