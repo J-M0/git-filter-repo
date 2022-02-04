@@ -6,6 +6,11 @@ dist_bin_SCRIPTS = git-filter-repo
 dist_man1_MANS = Documentation/man1/git-filter-repo.1
 dist_html_DATA = Documentation/html/git-filter-repo.html
 
+EXTRA_DIST = t
+
+clean-local:
+	rm -rf t/trash*
+
 .PHONY: coverage
 coverage:
 	time t/run_coverage
