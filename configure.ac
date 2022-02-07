@@ -5,5 +5,5 @@ AM_INIT_AUTOMAKE([1.16 serial-tests -Wall foreign])
 AC_PATH_PROG([PYTHON], [python3])
 AM_PATH_PYTHON([3.6])
 
-AC_CONFIG_FILES([Makefile git-filter-repo])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

@@ -6,7 +6,15 @@ dist_bin_SCRIPTS = git-filter-repo
 dist_man1_MANS = Documentation/man1/git-filter-repo.1
 dist_html_DATA = Documentation/html/git-filter-repo.html
 
+CLEANFILES = $(dist_bin_SCRIPTS)
+
 EXTRA_DIST = t
+
+git-filter-repo: git-filter-repo.in
+	sed -e 's,[@]PYTHON[@],$(PYTHON),g' \
+	    -e 's,[@]LOCALEDIR[@],$(localedir),g' \
+		< git-filter-repo.in > git-filter-repo
+	chmod +x git-filter-repo
 
 clean-local:
 	rm -rf t/trash*
@@ -14,12 +22,6 @@ clean-local:
 .PHONY: coverage
 coverage:
 	time t/run_coverage
-
-# fixup_locale might matter once we actually have translations, but right now
-# we don't.  It might not even matter then, because python has a fallback podir.
-.PHONY: fixup_locale
-fixup_locale:
-	sed -i -e 's%@@LOCALEDIR@@%$(localedir)%' git-filter-repo
 
 # People installing from tarball will already have man1/git-filter-repo.1 and
 # html/git-filter-repo.html.  But let's support people installing from a git
