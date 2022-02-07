@@ -3,10 +3,10 @@ htmldir = $(datarootdir)/doc/git/html
 TESTS = t/run_tests
 
 dist_bin_SCRIPTS = git-filter-repo
-dist_man1_MANS = Documentation/man1/git-filter-repo.1
-dist_html_DATA = Documentation/html/git-filter-repo.html
+dist_man1_MANS = Documentation/git-filter-repo.1
+dist_html_DATA = Documentation/git-filter-repo.html
 
-CLEANFILES = $(dist_bin_SCRIPTS)
+CLEANFILES = $(dist_bin_SCRIPTS) $(dist_man1_MANS) $(dist_html_DATA)
 
 EXTRA_DIST = t
 
@@ -23,14 +23,9 @@ clean-local:
 coverage:
 	time t/run_coverage
 
-# People installing from tarball will already have man1/git-filter-repo.1 and
-# html/git-filter-repo.html.  But let's support people installing from a git
-# clone too; for them, just cheat and snag a copy of the built docs that I
-# record in a different branch.
-Documentation/man1/git-filter-repo.1:
-	mkdir -p Documentation/man1
-	git show origin/docs:man1/git-filter-repo.1 >Documentation/man1/git-filter-repo.1
-
-Documentation/html/git-filter-repo.html:
-	mkdir -p Documentation/html
-	git show origin/docs:html/git-filter-repo.html >Documentation/html/git-filter-repo.html
+Documentation/git-filter-repo.1 Documentation/git-filter-repo.html: Documentation/git-filter-repo.txt
+	test -d ../git
+	ln -sf ../../git-filter-repo/Documentation/git-filter-repo.txt ../git/Documentation/
+	$(MAKE) -C ../git/Documentation git-filter-repo.html git-filter-repo.1
+	cp -a ../git/Documentation/git-filter-repo.html Documentation/
+	cp -a ../git/Documentation/git-filter-repo.1 Documentation/
