@@ -32,7 +32,3 @@ Documentation/man1/git-filter-repo.1:
 Documentation/html/git-filter-repo.html:
 	mkdir -p Documentation/html
 	git show origin/docs:html/git-filter-repo.html >Documentation/html/git-filter-repo.html
-
-# Fixup the shebang for installation
-install-exec-hook:
-	printf '1,s|#!/usr/bin/env python3|#!$(PYTHON)|\nwq\n' | ed $(DESTDIR)/$(bindir)/git-filter-repo
